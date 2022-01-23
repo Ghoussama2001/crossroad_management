@@ -18,10 +18,10 @@ public class BackGround extends JFrame {
             System.err.println(e.getMessage());
         }
 
-        this.setSize(800, 800);
+        this.setSize(800, 800); //later to 1000 x 800
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setResizable(false);
+        //this.setResizable(false);
         
         this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("BackGround.PNG"))));
         this.getContentPane().setLayout(null);
