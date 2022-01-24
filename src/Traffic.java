@@ -17,7 +17,7 @@ public class Traffic extends Thread{
     public void run() {
         while (true) {
             try {
-                sleep(6000);
+                sleep(7000);
             } catch (InterruptedException e) {
                 // TODO Auto-generated catch block
             }

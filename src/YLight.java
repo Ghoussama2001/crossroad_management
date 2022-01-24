@@ -4,7 +4,7 @@ import javax.swing.JLabel;
 public class YLight extends JLabel {
     final static ImageIcon y_green_light = new ImageIcon(XLight.class.getClassLoader().getResource("Y_GreenLight.PNG"));
     final static ImageIcon y_red_light = new ImageIcon(XLight.class.getClassLoader().getResource("Y_RedLight.PNG"));
-    final static int Y_LIGHT_X = 246;
+    final static int Y_LIGHT_X = 346;
     final static int Y_LIGHT_Y = 175;
 
     boolean currentLight = false;
