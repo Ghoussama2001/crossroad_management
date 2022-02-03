@@ -2,8 +2,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class XLight extends JLabel {
-    final static ImageIcon x_green_light = new ImageIcon(XLight.class.getClassLoader().getResource("X_GreenLight.PNG"));
-    final static ImageIcon x_red_light = new ImageIcon(XLight.class.getClassLoader().getResource("X_RedLight.PNG"));
+    final static ImageIcon x_green_light = new ImageIcon(XLight.class.getClassLoader().getResource("X_GreenLight2.PNG"));
+    final static ImageIcon x_red_light = new ImageIcon(XLight.class.getClassLoader().getResource("X_RedLight2.PNG"));
     final static int X_LIGHT_X = 606;
     final static int X_LIGHT_Y = 235;
 

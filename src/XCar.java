@@ -1,34 +1,34 @@
 import java.util.Random;
 import java.util.concurrent.Semaphore;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.Color;
+import java.awt.LayoutManager;
 
-public class XCar extends JPanel implements Runnable{
-    
-    Semaphore[] mutex_x;
+public class XCar extends JLabel implements Runnable{
+
+	Semaphore[] mutex_x;
     Semaphore light_x;
 
     Random random = new Random();
-    float r, g, b;
+    ImageIcon Xcars[] = { new ImageIcon(XCar.class.getClassLoader().getResource("TruckX.PNG")) ,
+    		new ImageIcon(XCar.class.getClassLoader().getResource("BusX.PNG")),
+    		new ImageIcon(XCar.class.getClassLoader().getResource("CarX.PNG")),
+    		new ImageIcon(XCar.class.getClassLoader().getResource("PoliceX.PNG"))};
     final static int LIGHT_ACQUIRE = 606;
     final static int LIGHT_RELEASE = 320;
     final static int Y_AXIS = 300;
     //int x_axis = 918;
-    int x_axis = 985;
+    int x_axis = 985 ;
 
     public XCar(Semaphore light_x, Semaphore[] mutex_x) {
-        super();
-        r = random.nextFloat();
-        g = random.nextFloat();
-        b = random.nextFloat();
-        Color color = new Color(r, g, b);
-
+    	super();
         this.light_x = light_x;
         this.mutex_x = mutex_x;
-
-        this.setBackground(color);
-        this.setSize(70, 59);
+        this.setIcon(Xcars[random.nextInt((3)+1)]);
+        this.setSize(93, 46);
         this.setLocation(x_axis, Y_AXIS);
         
     }
@@ -40,7 +40,7 @@ public class XCar extends JPanel implements Runnable{
             // TODO Auto-generated catch block
         }
         for (int i = 4; i > 0; i--) {
-            while (x_axis > LIGHT_ACQUIRE+78*i) {
+            while (x_axis > LIGHT_ACQUIRE+95*i) {
                 x_axis--;
                 this.setLocation(x_axis, Y_AXIS);
                 try {
@@ -81,7 +81,7 @@ public class XCar extends JPanel implements Runnable{
     }
 
     public void keepMoving() {
-        while (x_axis > -70) {
+        while (x_axis > -100) {
             x_axis--;
             this.setLocation(x_axis, Y_AXIS);
             try {

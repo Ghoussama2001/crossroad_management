@@ -23,7 +23,7 @@ public class BackGround extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         
-        this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("BackGround.PNG"))));
+        this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("BackGround.PNG.png"))));
         this.getContentPane().setLayout(null);
         this.setVisible(true);
     }

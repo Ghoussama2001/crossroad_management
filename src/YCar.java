@@ -1,16 +1,20 @@
 import java.util.Random;
 import java.util.concurrent.Semaphore;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.Color;
 
-public class YCar extends JPanel implements Runnable {
+public class YCar extends JLabel implements Runnable {
 
     Semaphore[] mutex_y;
     Semaphore light_y;
-    
     Random random = new Random();
-    float r, g, b;
+    ImageIcon Ycars[] = { new ImageIcon(XCar.class.getClassLoader().getResource("CarY1.PNG")) ,
+    		new ImageIcon(XCar.class.getClassLoader().getResource("BusY.PNG")),
+    		new ImageIcon(XCar.class.getClassLoader().getResource("PoliceY.PNG")),
+    		new ImageIcon(XCar.class.getClassLoader().getResource("TruckY.PNG"))};
     final static int LIGHT_ACQUIRE = 195;
     final static int LIGHT_RELEASE = 481;
     final static int X_AXIS = 411;
@@ -19,16 +23,10 @@ public class YCar extends JPanel implements Runnable {
 
     public YCar(Semaphore light_y, Semaphore mutex_y[]) {
         super();
-        r = random.nextFloat();
-        g = random.nextFloat();
-        b = random.nextFloat();
-        Color color = new Color(r, g, b);
-
         this.light_y = light_y;
         this.mutex_y = mutex_y;
-
-        this.setBackground(color);
-        this.setSize(59, 70);
+        this.setIcon(Ycars[random.nextInt((3)+1)]);
+        this.setSize(46,93);
         this.setLocation(X_AXIS, y_axis);
         
     }
@@ -93,7 +91,6 @@ public class YCar extends JPanel implements Runnable {
         }
         
     }
-
 
     public void run() {
         moveForward();
