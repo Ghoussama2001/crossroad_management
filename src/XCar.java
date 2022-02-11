@@ -32,8 +32,23 @@ public class XCar extends JLabel implements Runnable{
         this.setLocation(x_axis, Y_AXIS);
         
     }
-
-    public void moveForward() {
+    /*improved move Forward method */
+      public void moveForward() throws InterruptedException{
+      	for (int i=4 ; i>=0;i--){
+      		mutex_x[i].acquire();
+      		if (i<4) mutex_x[i+1].release();
+      		while (x_axis > LIGHT_ACQUIRE+93*i) {
+                x_axis--;
+                this.setLocation(x_axis, Y_AXIS);
+                try {
+                    Thread.sleep(7);
+                } catch (InterruptedException e) {}
+            }
+                
+      	}
+     }
+     
+    /*public void moveForward() {
         try {
             mutex_x[4].acquire();
         } catch (InterruptedException e) {
@@ -65,7 +80,7 @@ public class XCar extends JLabel implements Runnable{
                 //TODO: handle exception
             }
         }
-    }
+    }*/
 
     public void crossIntersection() {
         mutex_x[0].release();
@@ -86,24 +101,21 @@ public class XCar extends JLabel implements Runnable{
             this.setLocation(x_axis, Y_AXIS);
             try {
                 Thread.sleep(7);
-            } catch (InterruptedException e) {
-                //TODO: handle exception
-            }
+            } catch (InterruptedException e) {}
         }
     }
 
 
     public void run() {
-        moveForward();
         try {
-            light_x.acquire();
+			moveForward();
+			light_x.acquire();
             crossIntersection();
             light_x.release();
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        keepMoving();
-        //this.destroy if exists
+            keepMoving();
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
     }
 }

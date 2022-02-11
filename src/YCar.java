@@ -30,8 +30,22 @@ public class YCar extends JLabel implements Runnable {
         this.setLocation(X_AXIS, y_axis);
         
     }
-
-    public void moveForward() {
+    /*improved move Forward method */
+    public void moveForward() throws InterruptedException{
+    	for (int i=3 ; i>=0;i--){
+    		mutex_y[i].acquire();
+    		if (i<3) mutex_y[i+1].release();
+    		while (y_axis < LIGHT_ACQUIRE-78*i) {
+              y_axis++;
+              this.setLocation(X_AXIS, y_axis);
+              try {
+                  Thread.sleep(7);
+              } catch (InterruptedException e) {}
+          }
+              
+    	}
+   }
+    /*public void moveForward() {
 		try {
             mutex_y[3].acquire();
         } catch (InterruptedException e) {
@@ -63,7 +77,7 @@ public class YCar extends JLabel implements Runnable {
                 //TODO: handle exception
             }
         }
-    }
+    }*/
 
     public void crossIntersection() {
         mutex_y[0].release();
@@ -93,16 +107,12 @@ public class YCar extends JLabel implements Runnable {
     }
 
     public void run() {
-        moveForward();
         try {
+            moveForward();
             light_y.acquire();
             crossIntersection();
             light_y.release();
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        keepMoving();
-        //this.destroy if exists
+            keepMoving();
+        } catch (InterruptedException e) {}
     }
 }
