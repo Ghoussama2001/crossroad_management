@@ -3,11 +3,8 @@ import java.util.concurrent.Semaphore;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import java.awt.Color;
-import java.awt.LayoutManager;
 
-public class XCar extends JLabel implements Runnable{
+public class XCar extends JLabel implements Runnable {
 
 	Semaphore[] mutex_x;
     Semaphore light_x;
@@ -37,7 +34,7 @@ public class XCar extends JLabel implements Runnable{
       	for (int i=4 ; i>=0;i--){
       		mutex_x[i].acquire();
       		if (i<4) mutex_x[i+1].release();
-      		while (x_axis > LIGHT_ACQUIRE+93*i) {
+      		while (x_axis > LIGHT_ACQUIRE+95*i) {
                 x_axis--;
                 this.setLocation(x_axis, Y_AXIS);
                 try {
@@ -109,9 +106,11 @@ public class XCar extends JLabel implements Runnable{
     public void run() {
         try {
 			moveForward();
+
 			light_x.acquire();
             crossIntersection();
             light_x.release();
+            
             keepMoving();
 		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block

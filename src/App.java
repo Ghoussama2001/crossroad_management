@@ -1,5 +1,16 @@
 import java.util.concurrent.Semaphore;
 
+
+/**
+ * Trinome:
+ * GHODBANE Oussama	G01
+ * BOUMAKRANE Hamza	G01
+ * TEBRI Abdelhakim	G01
+ * 
+ */
+
+
+
 public class App {
     public static void main(String[] args) throws Exception {
         System.out.println("Hello, World!");
@@ -35,7 +46,7 @@ public class App {
             crossRoad.add(xcar);
             new Thread(xcar).start();
             try {
-                Thread.sleep((long)(Math.random()*4000)+1);
+                Thread.sleep((long)(Math.random()*3000)+1);
             } catch (InterruptedException e) {
                 //TODO: handle exception
             }
@@ -44,7 +55,7 @@ public class App {
             crossRoad.add(ycar);
             new Thread(ycar).start();
             try {
-                Thread.sleep((long)(Math.random()*4000)+1);
+                Thread.sleep((long)(Math.random()*3000)+1);
             } catch (InterruptedException e) {
                 //TODO: handle exception
             }
